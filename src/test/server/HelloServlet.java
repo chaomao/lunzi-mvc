@@ -9,8 +9,24 @@ import java.io.PrintWriter;
 
 class HelloServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        out.println("Hello World");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<HTML>\n" +
+                "<HEAD><TITLE>Hello World</TITLE></HEAD>\n" +
+                "<BODY>\n" +
+                "<H1>Hello WWW</H1>\n" +
+                "</BODY></HTML>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<HTML>\n" +
+                "<HEAD><TITLE>Hello World</TITLE></HEAD>\n" +
+                "<BODY>\n" +
+                "<H1>post success</H1>\n" +
+                "</BODY></HTML>");
     }
 }
