@@ -1,0 +1,27 @@
+诸位好，
+
+昨天第一挑战showcase结束，有四组选手获得了达成badge，首先对他们表示祝贺。另外四组选手因为种种原因，没有完成题目。这里给没有完成的队伍一个特别的优待，你们可以选择继续完善你们的容器，或者使用Google Guice完成来这一轮的比赛。选择继续完善你们容器的，将有机会获得DI达成的badge，而选择使用Google Guice的，将表示你们放弃首轮的badge。这是第一届比赛的特别优待，以后轮子大赛将不能获得前一轮次挑战失败的badge。所以请慎重选择。而拥有DI badge的选手，你们必须继续使用自己的DI容器！！！
+
+下面是第二挑战题目，Model-View-Controller Web Framework
+
+Model-View-Controller是面向对象的圣杯。在桌面时代MVC充分展示了面向对象技法的优雅，而第一面向对象语言Smalltalk（my favorite）也完全地构件在MVC之上。在GoF的Design Pattern里，MVC也是作为架构模式出现在第一章里。其他模式则是作为对MVC的支撑来讨论的。但是，what get you here won't bring you there。随着Web的兴起，以事件监听作为基础的MVC无法完全适应Web时代的要求（*见注1），于是MVC Model2 应运而生了，第一代表作就是Struts 1（上周终于宣布End of life了），之后Struts 1以其特有的丑陋，开启了java web framework时代（完全就是Java世界的Gol.D.Roger），03－06年几乎每周都有一个新的mvc web framework诞生，直到rails得到认可为止。其中有WebWork，Struts 2，Spring MVC等等。所以我们这周要挑战的就是MVC Model 2 WebFramework！！
+
+功能要求
+
+1. The implementation must support model driven page render with at least one choice of template engines(JSP, FreeMarker，StringTemplate，Velocity，Mustache)
+2. The implementation must support form submit, including nested structure. ???????
+3. The implementation must support service injection for controller, and must use your di container you finished last round(unless the loser who choose to use Guice)
+4. The implementation must support run in a embedded web container(Grizzly, Jetty or Tomcat)
+5. The support of web.xml is not mandatory
+
+实现要求
+
+1. Functioning properly, and robust.
+2. No other library apart from guava, xunit, testing tools, and the template engine you chose.
+
+
+1. add front controller
+2. add controllers
+3. add routes
+4. add template engine
+5. add form submit
