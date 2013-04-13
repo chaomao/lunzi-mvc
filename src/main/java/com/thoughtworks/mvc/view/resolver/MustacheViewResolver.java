@@ -1,40 +1,37 @@
-package com.thoughtworks.mvc.resolver;
+package com.thoughtworks.mvc.view.resolver;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
+import com.thoughtworks.mvc.model.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
-public class SimpleResolver implements Resolver {
+public class MustacheViewResolver implements ViewResolver {
 
     @Override
-    public void render(String content, HttpServletResponse response) {
+    public void render(ModelAndView modelAndView, HttpServletResponse response) {
         response.setContentType("text/html");
         PrintWriter out;
         try {
             out = response.getWriter();
-            out.println(getResult(content));
+            out.println(getResult(modelAndView));
         } catch (IOException ignored) {
         }
     }
 
-    private String getResult(String content) {
+    private String getResult(ModelAndView modelAndView) {
         FileReader reader = null;
         try {
-            reader = new FileReader("src/main/java/com/thoughtworks/mvc/views/hello.mus");
+            String viewPath = String.format("src/main/views/%s.mus", modelAndView.getViewName());
+            reader = new FileReader(viewPath);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         Template template = Mustache.compiler().compile(reader);
-        Map<String, String> data = new HashMap<String, String>();
-        data.put("content", content);
-        return template.execute(data);
+        return template.execute(modelAndView.getModelMap());
     }
 }

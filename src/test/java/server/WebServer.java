@@ -9,8 +9,7 @@ public class WebServer {
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);
         Context context = new Context(server, "/");
-        MVCDispatcherServlet dispatcher = new MVCDispatcherServlet();
-        context.addServlet(new ServletHolder(dispatcher), "/*");
+        context.addServlet(new ServletHolder(new MVCDispatcherServlet()), "/*");
         server.start();
     }
 }
