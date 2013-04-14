@@ -29,6 +29,7 @@ public class MVCDispatcherServlet extends HttpServlet {
 
     public void init() throws ServletException {
         container.registerComponentsInPackage("controllers");
+        container.registerComponentsInPackage("services");
         actionCallers = actionCallersFactory.createActionCallers(container.getAllClasses("controllers"));
     }
 
