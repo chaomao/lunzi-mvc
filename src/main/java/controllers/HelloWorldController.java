@@ -11,11 +11,6 @@ public class HelloWorldController {
         return "Mao Chao";
     }
 
-    @Path("/goodbye")
-    public String goodbye() {
-        return "Goodbye Mao Chao";
-    }
-
     @Path("/submit")
     @Post
     @ViewModel(name = "content")
