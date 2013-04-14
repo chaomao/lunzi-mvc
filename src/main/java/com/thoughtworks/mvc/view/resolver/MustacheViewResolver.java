@@ -24,14 +24,13 @@ public class MustacheViewResolver implements ViewResolver {
     }
 
     private String getResult(ModelAndView modelAndView) {
-        FileReader reader = null;
         try {
-            String viewPath = String.format("src/main/views/%s.mus", modelAndView.getViewName());
-            reader = new FileReader(viewPath);
+            String viewPath = String.format("src/main/views/%s.html", modelAndView.getViewName());
+            FileReader reader = new FileReader(viewPath);
+            Template template = Mustache.compiler().compile(reader);
+            return template.execute(modelAndView.getModelMap());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        Template template = Mustache.compiler().compile(reader);
-        return template.execute(modelAndView.getModelMap());
     }
 }
