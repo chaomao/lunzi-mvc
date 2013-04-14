@@ -1,12 +1,12 @@
 package com.thoughtworks.mvc.action;
 
+import com.thoughtworks.mvc.IOCContainer;
 import com.thoughtworks.mvc.http.HttpMethodsType;
 import com.thoughtworks.mvc.model.ModelAndView;
 import com.thoughtworks.mvc.model.ModelMap;
 import com.thoughtworks.mvc.view.resolver.ViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class ActionCaller {
@@ -24,13 +24,12 @@ public class ActionCaller {
 
     public ModelAndView run(HttpServletRequest request) {
         try {
-            Constructor constructor = definition.controller.getConstructor();
-            Object result = definition.action.invoke(constructor.newInstance());
+            Object controller = IOCContainer.getInstance().get(definition.controller);
+            Object result = definition.action.invoke(controller);
             ModelMap modelMap = new ModelMap();
             modelMap.put(definition.viewModelName, result);
             return new ModelAndView(modelMap, getViewPath());
-        } catch (NoSuchMethodException | InvocationTargetException |
-                InstantiationException | IllegalAccessException e) {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException();
         }
     }

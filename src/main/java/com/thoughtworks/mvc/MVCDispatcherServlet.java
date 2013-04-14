@@ -16,22 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.google.common.collect.Iterables.filter;
-import static com.google.common.collect.Iterables.get;
+import static com.google.common.collect.Iterables.find;
 import static com.thoughtworks.mvc.http.HttpMethodsType.Get;
 import static com.thoughtworks.mvc.http.HttpMethodsType.Post;
 
 public class MVCDispatcherServlet extends HttpServlet {
 
     private final ViewResolver resolver = new MustacheViewResolver();
-    private final ControllerParser controllerParser = new ControllerParser();
     private final ActionCallersFactory actionCallersFactory = new ActionCallersFactory();
     private final Container container = IOCContainer.getInstance();
     private ArrayList<ActionCaller> actionCallers;
 
     public void init() throws ServletException {
-        ArrayList<Class> controllerClasses = controllerParser.parse("src/main/java/controllers");
-        actionCallers = actionCallersFactory.createActionCallers(controllerClasses);
+        container.registerComponentsInPackage("controllers");
+        actionCallers = actionCallersFactory.createActionCallers(container.getAllClasses("controllers"));
     }
 
     @Override
@@ -51,12 +49,12 @@ public class MVCDispatcherServlet extends HttpServlet {
     }
 
     private ActionCaller getActionCaller(final HttpServletRequest request, final HttpMethodsType type) {
-        return get(filter(actionCallers, new Predicate<ActionCaller>() {
+        return find(actionCallers, new Predicate<ActionCaller>() {
             @Override
             public boolean apply(ActionCaller input) {
                 return input.fitable(request, type);
             }
-        }), 0);
+        });
     }
 }
 
