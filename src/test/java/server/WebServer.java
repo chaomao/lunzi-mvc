@@ -9,6 +9,7 @@ public class WebServer {
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);
         Context context = new Context(server, "/");
+        context.addServlet(new ServletHolder(new FavoriteIconServlet()), "/favicon.ico");
         context.addServlet(new ServletHolder(new MVCDispatcherServlet()), "/*");
         server.start();
     }
