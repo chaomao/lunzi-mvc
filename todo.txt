@@ -20,8 +20,8 @@ Model-View-Controller是面向对象的圣杯。在桌面时代MVC充分展示�
 2. No other library apart from guava, xunit, testing tools, and the template engine you chose.
 
 
-1. add front controller
-2. add controllers
-3. add routes
-4. add template engine
-5. add form submit
+1. add front controller -- finish
+2. add controllers --finish
+3. add routes -- finish
+4. add template engine -- finish
+5. add form submit -- submit author first, then submit book

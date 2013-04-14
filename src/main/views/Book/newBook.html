@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+Create a new book
+<form action="/book/create" method="post">
+    <label for="book.author.name1">Author Name 1</label>
+    <input id="book.author.name1" name="book[author][]" type="text"/>
+    <br>
+    <label for="book.author.name2">Author Name 2</label>
+    <input id="book.author.name2" name="book[author][]" type="text"/>
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>

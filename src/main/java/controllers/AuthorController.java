@@ -2,6 +2,7 @@ package controllers;
 
 import com.google.common.collect.Lists;
 import com.thoughtworks.mvc.annotations.Path;
+import com.thoughtworks.mvc.annotations.RequestParameter;
 import com.thoughtworks.mvc.model.ModelMap;
 import models.Author;
 
@@ -21,5 +22,14 @@ public class AuthorController {
         return modelMap;
     }
 
+    @Path("/author/new")
+    public void newAuthor() {
+    }
 
+    @Path("/author/create")
+    public ModelMap create(@RequestParameter("author") Author author) {
+        ModelMap modelMap = new ModelMap();
+        modelMap.put("author", author);
+        return modelMap;
+    }
 }
