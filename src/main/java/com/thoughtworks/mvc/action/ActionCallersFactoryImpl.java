@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import com.thoughtworks.mvc.annotations.Path;
 import com.thoughtworks.mvc.annotations.ViewModel;
 import com.thoughtworks.mvc.http.HttpMethodsType;
-import com.thoughtworks.mvc.view.resolver.MustacheViewResolver;
+import com.thoughtworks.mvc.parameter.ParameterAnalyzer;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -16,7 +16,15 @@ import java.util.List;
 import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Iterables.transform;
 
-public class ActionCallersFactory {
+public class ActionCallersFactoryImpl implements ActionCallerFactory {
+
+    private ParameterAnalyzer analyzer;
+
+    public ActionCallersFactoryImpl(ParameterAnalyzer analyzer) {
+        this.analyzer = analyzer;
+    }
+
+    @Override
     public ArrayList<ActionCaller> createActionCallers(Iterable<Class> controllerClasses) {
         ArrayList<ActionCaller> actionCallers = new ArrayList<>();
         for (Class controller : controllerClasses) {
@@ -46,7 +54,7 @@ public class ActionCallersFactory {
         return Lists.newArrayList(transform(actionDefinitions, new Function<ActionDefinition, ActionCaller>() {
             @Override
             public ActionCaller apply(ActionDefinition input) {
-                return new ActionCaller(input, new MustacheViewResolver());
+                return new ActionCaller(input, analyzer.analyzeParameters(input));
             }
         }));
     }

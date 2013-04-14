@@ -13,10 +13,10 @@ public class PostController {
 
     @Path("/post/submit")
     @Post
-    public ModelMap submit(@RequestParameter("name") String name) {
+    public ModelMap submit(@RequestParameter("name") String name, @RequestParameter("age") int age) {
         ModelMap modelMap = new ModelMap();
-        System.out.println(name);
         modelMap.put("name", name);
+        modelMap.put("age", age);
         return modelMap;
     }
 }

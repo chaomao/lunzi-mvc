@@ -1,25 +1,27 @@
 package com.thoughtworks.mvc.action;
 
+import com.google.common.base.Function;
 import com.thoughtworks.mvc.IOCContainer;
-import com.thoughtworks.mvc.annotations.RequestParameter;
 import com.thoughtworks.mvc.http.HttpMethodsType;
 import com.thoughtworks.mvc.model.ModelAndView;
 import com.thoughtworks.mvc.model.ModelMap;
-import com.thoughtworks.mvc.view.resolver.ViewResolver;
+import com.thoughtworks.mvc.parameter.builder.ParameterBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import static com.google.common.collect.Iterables.toArray;
+import static com.google.common.collect.Iterables.transform;
 
 public class ActionCaller {
     private final ActionDefinition definition;
-    private ViewResolver resolver;
+    private final List<ParameterBuilder> parameterBuilders;
 
-    public ActionCaller(ActionDefinition definition, ViewResolver resolver) {
+    public ActionCaller(ActionDefinition definition, List<ParameterBuilder> parameterBuilders) {
         this.definition = definition;
-        this.resolver = resolver;
+        this.parameterBuilders = parameterBuilders;
     }
 
     public boolean fitable(HttpServletRequest request, HttpMethodsType type) {
@@ -37,24 +39,13 @@ public class ActionCaller {
         }
     }
 
-    private Object[] getParameters(HttpServletRequest request) {
-        ArrayList<Object> objects = new ArrayList<>();
-        Annotation[][] parameterAnnotations = definition.action.getParameterAnnotations();
-        Class<?>[] parameterTypes = definition.action.getParameterTypes();
-        for (int i = 0; i < parameterTypes.length; i++) {
-            Annotation annotation = parameterAnnotations[i][0];
-            String paraName = getParameterName(annotation, parameterTypes[i]);
-            objects.add(request.getParameter(paraName));
-        }
-        return objects.toArray();
-    }
-
-    private String getParameterName(Annotation annotation, Class<?> parameterType) {
-        if (annotation instanceof RequestParameter) {
-            return ((RequestParameter) annotation).value();
-        } else {
-            return parameterType.getName();
-        }
+    public Object[] getParameters(final HttpServletRequest request) {
+        return toArray(transform(parameterBuilders, new Function<ParameterBuilder, Object>() {
+            @Override
+            public Object apply(ParameterBuilder input) {
+                return input.build(request);
+            }
+        }), Object.class);
     }
 
     private ModelMap createModelMap(Object result) {

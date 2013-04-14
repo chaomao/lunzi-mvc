@@ -2,9 +2,12 @@ package com.thoughtworks.mvc;
 
 import com.google.common.base.Predicate;
 import com.thoughtworks.mvc.action.ActionCaller;
-import com.thoughtworks.mvc.action.ActionCallersFactory;
+import com.thoughtworks.mvc.action.ActionCallerFactory;
+import com.thoughtworks.mvc.action.ActionCallersFactoryImpl;
 import com.thoughtworks.mvc.http.HttpMethodsType;
 import com.thoughtworks.mvc.model.ModelAndView;
+import com.thoughtworks.mvc.parameter.ParameterAnalyzer;
+import com.thoughtworks.mvc.parameter.TransformerChooser;
 import com.thoughtworks.mvc.view.resolver.MustacheViewResolver;
 import com.thoughtworks.mvc.view.resolver.ViewResolver;
 import com.thoughtworks.row.ioc.Container;
@@ -23,13 +26,19 @@ import static com.thoughtworks.mvc.http.HttpMethodsType.Post;
 public class MVCDispatcherServlet extends HttpServlet {
 
     private final ViewResolver resolver = new MustacheViewResolver();
-    private final ActionCallersFactory actionCallersFactory = new ActionCallersFactory();
     private final Container container = IOCContainer.getInstance();
+    private ActionCallerFactory actionCallersFactory;
     private ArrayList<ActionCaller> actionCallers;
 
     public void init() throws ServletException {
         container.registerComponentsInPackage("controllers");
         container.registerComponentsInPackage("services");
+        container.registerComponentsInPackage("com.thoughtworks.mvc.parameter.analyzer");
+        container.registerComponentsInPackage("com.thoughtworks.mvc.parameter.transformers");
+        container.register(ParameterAnalyzer.class, new ParameterAnalyzer());
+        container.register(ActionCallerFactory.class, ActionCallersFactoryImpl.class);
+        container.register(TransformerChooser.class, new TransformerChooser());
+        actionCallersFactory = container.get(ActionCallerFactory.class);
         actionCallers = actionCallersFactory.createActionCallers(container.getAllClasses("controllers"));
     }
 
