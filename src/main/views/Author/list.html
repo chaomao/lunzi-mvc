@@ -5,7 +5,12 @@
 </head>
 <body>
 <p>
-    Author name is {{#author}}{{name}}{{/author}}.
+    There are following authors:
+    <br>
+    {{#authors}}
+    Name : {{name}}
+    <br>
+    {{/authors}}
 </p>
 </body>
 </html>
