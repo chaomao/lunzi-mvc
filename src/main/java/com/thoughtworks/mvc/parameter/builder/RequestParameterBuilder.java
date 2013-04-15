@@ -23,6 +23,6 @@ public class RequestParameterBuilder implements ParameterBuilder {
     public Object build(HttpServletRequest request) {
         RequestParameter annotation = (RequestParameter) parameterAnnotation[0];
         Transformer transformer = chooser.choose(parameterType);
-        return transformer.transform(annotation.value(), request.getParameterMap());
+        return transformer.transform(parameterType, annotation.value(), request.getParameterMap());
     }
 }

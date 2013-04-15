@@ -2,9 +2,9 @@ package com.thoughtworks.mvc.parameter.transformers;
 
 import java.util.Map;
 
-public class StringTransformer implements Transformer<String> {
+public class StringTransformer implements Transformer {
     @Override
-    public String transform(String name, Map<String, String[]> map) {
-        return map.get(name)[0];
+    public <T> T transform(Class<T> type, String parameterKey, Map<String, String[]> map) {
+        return (T) map.get(parameterKey)[0];
     }
 }

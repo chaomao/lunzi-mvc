@@ -7,6 +7,9 @@ public class Book {
     private String name;
     private List<Author> authors = new ArrayList<>();
 
+    public Book() {
+    }
+
     public Book(String name) {
         this.name = name;
     }

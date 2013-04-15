@@ -1,5 +1,6 @@
 package com.thoughtworks.mvc.parameter;
 
+import com.thoughtworks.mvc.parameter.transformers.CustomizeTransformer;
 import com.thoughtworks.mvc.parameter.transformers.IntegerTransformer;
 import com.thoughtworks.mvc.parameter.transformers.StringTransformer;
 import com.thoughtworks.mvc.parameter.transformers.Transformer;
@@ -21,6 +22,8 @@ public class TransformerChooser {
     }
 
     public Transformer choose(Class type) {
-        return transformerHashMap.get(type);
+        return transformerHashMap.containsKey(type) ?
+                transformerHashMap.get(type) :
+                new CustomizeTransformer();
     }
 }

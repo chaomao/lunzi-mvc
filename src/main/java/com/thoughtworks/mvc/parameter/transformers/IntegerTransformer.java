@@ -2,10 +2,10 @@ package com.thoughtworks.mvc.parameter.transformers;
 
 import java.util.Map;
 
-public class IntegerTransformer implements Transformer<Integer> {
+public class IntegerTransformer implements Transformer {
 
     @Override
-    public Integer transform(String name, Map<String, String[]> map) {
-        return Integer.valueOf(map.get(name)[0]);
+    public <T> T transform(Class<T> type, String parameterKey, Map<String, String[]> map) {
+        return (T) Integer.valueOf(map.get(parameterKey)[0]);
     }
 }
