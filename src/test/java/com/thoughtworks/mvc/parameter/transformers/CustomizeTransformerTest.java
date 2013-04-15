@@ -1,7 +1,7 @@
 package com.thoughtworks.mvc.parameter.transformers;
 
 import app.models.Author;
-import app.models.Book;
+import app.models.SimpleBook;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,15 +30,16 @@ public class CustomizeTransformerTest {
         assertThat(author.getAge(), is(29));
     }
 
-//    @Test
-//    public void should_transform_to_book_which_is_nested() throws Exception {
-//        HashMap<String, String[]> map = new HashMap<>();
-//        map.put("book.author.name", new String[]{"MaoChao"});
-//        map.put("book.author.age", new String[]{"29"});
-//        map.put("book.name", new String[]{"How to new bee"});
-//        Book book = transformer.transform(Book.class, "book", map);
-//
-//        assertThat(book.getName(), is("How to new bee"));
-//        assertThat(book.getAuthors(), is(29));
-//    }
+    @Test
+    public void should_transform_to_book_which_is_nested() throws Exception {
+        HashMap<String, String[]> map = new HashMap<>();
+        map.put("simpleBook.author.name", new String[]{"MaoChao"});
+        map.put("simpleBook.author.age", new String[]{"29"});
+        map.put("simpleBook.name", new String[]{"How to new bee"});
+        SimpleBook book = transformer.transform(SimpleBook.class, "simpleBook", map);
+
+        assertThat(book.getName(), is("How to new bee"));
+        assertThat(book.getAuthor().getAge(), is(29));
+        assertThat(book.getAuthor().getName(), is("MaoChao"));
+    }
 }
