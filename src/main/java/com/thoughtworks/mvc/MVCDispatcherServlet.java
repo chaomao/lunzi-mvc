@@ -31,15 +31,15 @@ public class MVCDispatcherServlet extends HttpServlet {
     private ArrayList<ActionCaller> actionCallers;
 
     public void init() throws ServletException {
-        container.registerComponentsInPackage("controllers");
-        container.registerComponentsInPackage("services");
+        container.registerComponentsInPackage("app.controllers");
+        container.registerComponentsInPackage("app.services");
         container.registerComponentsInPackage("com.thoughtworks.mvc.parameter.analyzer");
         container.registerComponentsInPackage("com.thoughtworks.mvc.parameter.transformers");
         container.register(ParameterAnalyzer.class, new ParameterAnalyzer());
         container.register(ActionCallerFactory.class, ActionCallersFactoryImpl.class);
         container.register(TransformerChooser.class, new TransformerChooser());
         actionCallersFactory = container.get(ActionCallerFactory.class);
-        actionCallers = actionCallersFactory.createActionCallers(container.getAllClasses("controllers"));
+        actionCallers = actionCallersFactory.createActionCallers(container.getAllClasses("app.controllers"));
     }
 
     @Override

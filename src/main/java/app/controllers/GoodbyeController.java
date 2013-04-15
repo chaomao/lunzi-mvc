@@ -1,7 +1,7 @@
-package controllers;
+package app.controllers;
 
 import com.thoughtworks.mvc.annotations.Path;
-import services.Service;
+import app.services.Service;
 
 public class GoodbyeController {
     private Service service;

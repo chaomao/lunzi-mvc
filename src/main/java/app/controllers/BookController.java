@@ -1,11 +1,11 @@
-package controllers;
+package app.controllers;
 
 import com.thoughtworks.mvc.annotations.Path;
 import com.thoughtworks.mvc.annotations.Post;
 import com.thoughtworks.mvc.annotations.RequestParameter;
 import com.thoughtworks.mvc.model.ModelMap;
-import models.Author;
-import models.Book;
+import app.models.Author;
+import app.models.Book;
 
 
 public class BookController {

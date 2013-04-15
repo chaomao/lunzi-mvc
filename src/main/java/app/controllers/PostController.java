@@ -1,4 +1,4 @@
-package controllers;
+package app.controllers;
 
 import com.thoughtworks.mvc.annotations.Path;
 import com.thoughtworks.mvc.annotations.Post;

@@ -1,4 +1,4 @@
-package services;
+package app.services;
 
 public class ServiceImpl implements Service {
 
