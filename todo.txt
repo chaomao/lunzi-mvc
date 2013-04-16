@@ -24,4 +24,7 @@ Model-View-Controller是面向对象的圣杯。在桌面时代MVC充分展示�
 2. add controllers --finish
 3. add routes -- finish
 4. add template engine -- finish
-5. add form submit -- submit author first, then submit book
+5. add form submit -- left submit list object
+
+*add ft
+install phantomjs and ruby 2.0, then bundle install, run 'ruby ft.rb' at last.
