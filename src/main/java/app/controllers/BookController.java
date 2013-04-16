@@ -8,9 +8,10 @@ import app.models.Author;
 import app.models.Book;
 
 
+//don't implement list author, so comment book controller first
 public class BookController {
 
-    @Path("/book/sample")
+//    @Path("/book/sample")
     public ModelMap sample() {
         ModelMap modelMap = new ModelMap();
         Book book = new Book("How to new bee");
@@ -20,12 +21,12 @@ public class BookController {
         return modelMap;
     }
 
-    @Path("/book/new")
+//    @Path("/book/new")
     public void newBook() {
     }
 
-    @Path("/book/create")
-    @Post
+//    @Path("/book/create")
+//    @Post
     public ModelMap create(@RequestParameter("book") Book book) {
         ModelMap modelMap = new ModelMap();
         modelMap.put("book", book);
