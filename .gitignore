@@ -2,5 +2,6 @@
 
 # Package Files #
 *.jar
+!lunzi-IOC-2.0.2.jar
 *.war
 *.ear
