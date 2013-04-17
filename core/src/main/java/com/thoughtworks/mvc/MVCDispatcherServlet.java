@@ -8,7 +8,6 @@ import com.thoughtworks.mvc.http.HttpMethodsType;
 import com.thoughtworks.mvc.model.ModelAndView;
 import com.thoughtworks.mvc.parameter.ParameterAnalyzer;
 import com.thoughtworks.mvc.parameter.TransformerChooser;
-import com.thoughtworks.mvc.parameter.transformers.CustomizeTransformer;
 import com.thoughtworks.mvc.view.resolver.MustacheViewResolver;
 import com.thoughtworks.mvc.view.resolver.ViewResolver;
 import com.thoughtworks.row.ioc.Container;

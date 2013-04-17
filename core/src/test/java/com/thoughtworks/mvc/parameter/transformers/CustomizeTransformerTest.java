@@ -1,7 +1,7 @@
 package com.thoughtworks.mvc.parameter.transformers;
 
-import app.models.Author;
-import app.models.SimpleBook;
+import bean.Author;
+import bean.SimpleBook;
 import org.junit.Before;
 import org.junit.Test;
 
