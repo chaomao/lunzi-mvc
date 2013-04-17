@@ -28,3 +28,6 @@ Model-View-Controller是面向对象的圣杯。在桌面时代MVC充分展示�
 
 *add ft
 install phantomjs and ruby 2.0, then bundle install, run 'ruby ft.rb' at last.
+
+1. add unit tests for mvc framework
+2. add java functional test
