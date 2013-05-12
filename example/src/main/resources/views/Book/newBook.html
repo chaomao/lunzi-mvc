@@ -6,11 +6,24 @@
 <body>
 Create a new book
 <form action="/book/create" method="post">
-    <label for="book.author.name1">Author Name 1</label>
-    <input id="book.author.name1" name="book[author][]" type="text"/>
+    <label for="book.name">Book Name</label>
+    <input id="book.name" name="book.name" type="text"/>
     <br>
-    <label for="book.author.name2">Author Name 2</label>
-    <input id="book.author.name2" name="book[author][]" type="text"/>
+    <label for="book.author1.name">Author Name</label>
+    <input id="book.author1.name" name="book.author[].name" type="text"/>
+    <label for="book.author1.age">Author Age</label>
+    <input id="book.author1.age" name="book.author[].age" type="text"/>
+    <br>
+    <label for="book.author2.name">Author Name</label>
+    <input id="book.author2.name" name="book.author[].name" type="text"/>
+    <label for="book.author2.age">Author Age</label>
+    <input id="book.author2.age" name="book.author[].age" type="text"/>
+    <br>
+    <label for="book.author3.name">Author Name</label>
+    <input id="book.author3.name" name="book.author[].name" type="text"/>
+    <label for="book.author3.age">Author Age</label>
+    <input id="book.author3.age" name="book.author[].age" type="text"/>
+    <br>
     <input type="submit" value="submit"/>
 </form>
 </body>

@@ -66,18 +66,25 @@ describe 'ft' do
 		end
 	end
 
-	describe 'simple_book' do
+	describe 'book' do
 		it 'should create book and two authors' do
-			skip 'not implemente yet'
-			visit 'http://localhost:8080/simple-book/new'
-			fill_in('simpleBook.name', with: 'How to new bee')
-			fill_in('simpleBook.author.name', with: 'Mao Chao')
-			fill_in('simpleBook.author.age', with: '28')
+			visit 'http://localhost:8080/book/new'
+			fill_in('book.name', with: 'How to new bee')
+			fill_in('book.author1.name', with: 'Mao1')
+			fill_in('book.author1.age', with: '28')
+			fill_in('book.author2.name', with: 'Mao2')
+			fill_in('book.author2.age', with: '29')
+			fill_in('book.author3.name', with: 'Mao3')
+			fill_in('book.author3.age', with: '30')
 			click_button('submit')
-			page.text.must_include('You have create a new simple book!!!')
+			page.text.must_include("You have create a new Book!!!")
 			page.text.must_include('Book Name : How to new bee')
-			page.text.must_include('Author Name : Mao Chao')
+			page.text.must_include('Author Name : Mao1')
 			page.text.must_include('Author Age : 28')
+			page.text.must_include('Author Name : Mao2')
+			page.text.must_include('Author Age : 29')
+			page.text.must_include('Author Name : Mao3')
+			page.text.must_include('Author Age : 30')
 		end
 	end
 end

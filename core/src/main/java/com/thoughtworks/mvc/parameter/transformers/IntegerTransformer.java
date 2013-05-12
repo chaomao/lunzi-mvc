@@ -5,7 +5,7 @@ import java.util.Map;
 public class IntegerTransformer implements Transformer {
 
     @Override
-    public <T> T transform(Class<T> type, String parameterKey, Map<String, String[]> map) {
-        return (T) Integer.valueOf(map.get(parameterKey)[0]);
+    public Object transform(Class modelClass, String parameterKey, Map<String, String[]> map) {
+        return Integer.valueOf(map.get(parameterKey)[0]);
     }
 }

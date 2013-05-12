@@ -1,11 +1,9 @@
 package com.thoughtworks.mvc.parameter;
 
-import com.thoughtworks.mvc.parameter.transformers.CustomizeTransformer;
-import com.thoughtworks.mvc.parameter.transformers.IntegerTransformer;
-import com.thoughtworks.mvc.parameter.transformers.StringTransformer;
-import com.thoughtworks.mvc.parameter.transformers.Transformer;
+import com.thoughtworks.mvc.parameter.transformers.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class TransformerChooser {
 
@@ -19,6 +17,7 @@ public class TransformerChooser {
         transformerHashMap.put(Integer.class, new IntegerTransformer());
         transformerHashMap.put(int.class, new IntegerTransformer());
         transformerHashMap.put(String.class, new StringTransformer());
+        transformerHashMap.put(List.class, new ListTransformer());
     }
 
     public Transformer choose(Class type) {

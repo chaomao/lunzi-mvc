@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class StringTransformer implements Transformer {
     @Override
-    public <T> T transform(Class<T> type, String parameterKey, Map<String, String[]> map) {
-        return (T) map.get(parameterKey)[0];
+    public Object transform(Class modelClass, String parameterKey, Map<String, String[]> map) {
+        return map.get(parameterKey)[0];
     }
 }
