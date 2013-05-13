@@ -37,7 +37,7 @@ project(":core") {
         compile 'javax.servlet:servlet-api:2.5'
         compile fileTree(dir: 'libs', include: '*.jar')
     }
-    version = '1.0'
+    version = '2.1'
 }
 
 project(":example") {

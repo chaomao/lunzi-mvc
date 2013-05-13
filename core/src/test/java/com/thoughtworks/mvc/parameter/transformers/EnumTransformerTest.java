@@ -1,6 +1,7 @@
 package com.thoughtworks.mvc.parameter.transformers;
 
 import bean.BookCategory;
+import com.thoughtworks.mvc.parameter.TransformerChooser;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class EnumTransformerTest {
     public void testTransform() throws Exception {
         HashMap<String, String[]> map = new HashMap<>();
         map.put("category", new String[]{"Computer"});
-        EnumTransformer transformer = new EnumTransformer();
+        Transformer transformer = new TransformerChooser().choose(BookCategory.class);
 
         BookCategory category = (BookCategory) transformer.transform(BookCategory.class, "category", map);
 

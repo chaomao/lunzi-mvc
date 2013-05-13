@@ -22,8 +22,10 @@ public class TransformerChooser {
     }
 
     public Transformer choose(Class type) {
-        return transformerHashMap.containsKey(type) ?
-                transformerHashMap.get(type) :
-                new CustomizeTransformer();
+        if (transformerHashMap.containsKey(type)) {
+            return transformerHashMap.get(type);
+        } else if (type.isEnum()) {
+            return transformerHashMap.get(Enum.class);
+        } else return new CustomizeTransformer();
     }
 }
