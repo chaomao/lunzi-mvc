@@ -18,6 +18,7 @@ public class TransformerChooser {
         transformerHashMap.put(int.class, new IntegerTransformer());
         transformerHashMap.put(String.class, new StringTransformer());
         transformerHashMap.put(ArrayList.class, new ListTransformer());
+        transformerHashMap.put(Enum.class, new EnumTransformer());
     }
 
     public Transformer choose(Class type) {
