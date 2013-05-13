@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class CustomizeTransformerTest {
         map.put("book.author[].age", new String[]{"29", "30"});
         Book book = (Book) transformer.transform(Book.class, "book", map);
 
-        List<Author> expectAuthors = Lists.newArrayList(
+        ArrayList<Author> expectAuthors = Lists.newArrayList(
                 new Author("Mao", 29),
                 new Author("Chao", 30));
         assertThat(book.getName(), is("How to new bee"));

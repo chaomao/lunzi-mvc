@@ -1,11 +1,10 @@
 package app.models;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Book {
     private String name;
-    private List<Author> authors = new ArrayList<>();
+    private ArrayList<Author> authors = new ArrayList<>();
 
     public Book() {
     }
@@ -26,11 +25,11 @@ public class Book {
         this.name = name;
     }
 
-    public List<Author> getAuthors() {
+    public ArrayList<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(ArrayList<Author> authors) {
         this.authors = authors;
     }
 }

@@ -7,7 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class CustomizeTransformer implements Transformer {
@@ -36,7 +36,7 @@ public class CustomizeTransformer implements Transformer {
         String parameterKey = String.format("%s.%s", name, field.getName());
         Class<?> parameterType = field.getType();
         Transformer transformer = new TransformerChooser().choose(parameterType);
-        return parameterType.equals(List.class) ?
+        return parameterType.equals(ArrayList.class) ?
                 transformList(map, field, parameterKey, transformer) :
                 transformer.transform(parameterType, parameterKey, map);
     }
